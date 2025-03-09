@@ -1,0 +1,4 @@
+#!/bin/bash
+
+g++ -std=c++17 -o game `find ASCII_Engine -iname "*.cpp" -print` src/*.cpp && ./game
+
