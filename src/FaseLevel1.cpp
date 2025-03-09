@@ -16,27 +16,6 @@ void FaseLevel1::init()
 
 	int DISTANCIA_ESTANTES = 50;
 
-	//Estante_bebidas = new ObjetoDeJogo("frontDoor",Sprite("rsc/estante_bebidas.txt",COR::BRANCA),2,10);
-	//objs.push_back(Estante_bebidas);
-
-	//Estante_doces = new ObjetoDeJogo("frontDoor",Sprite("rsc/estante_doces.txt",COR::BRANCA),2,10+ DISTANCIA_ESTANTES);
-	//objs.push_back(Estante_doces);
-
-	//Estante_frios = new ObjetoDeJogo("frontDoor",Sprite("rsc/estante_frios.txt",COR::BRANCA),2, 10+(2*DISTANCIA_ESTANTES));
-	//objs.push_back(Estante_frios);
-
-	//Estante_frutas = new ObjetoDeJogo("frontDoor",Sprite("rsc/estante_frutas.txt",COR::BRANCA),2,10+(3*DISTANCIA_ESTANTES));
-	//objs.push_back(Estante_frutas);
-
-	//Estante_massas = new ObjetoDeJogo("frontDoor",Sprite("rsc/estante_massas.txt",COR::BRANCA),2,10+(4*DISTANCIA_ESTANTES));
-	//objs.push_back(Estante_massas);
-
-	//Menu = new ObjetoDeJogo("frontDoor",Sprite("rsc/cardapio.txt",COR::BRANCA),2,10+(5*DISTANCIA_ESTANTES));
-	//objs.push_back(Menu);
-	
-	 // new ObjetoDeJogo("frontDoor",Sprite("rsc/bonsai.txt",COR::VERDE),17,300);
-	//objs.push_back(new ObjetoDeJogo("frontDoor",Sprite("rsc/bonsai.txt",COR::VERDE),17,300));
-
 	
 	Personagem_feminina = new Cozinheira(ObjetoDeJogo("Feminina",SpriteAnimado("rsc/personagem_feminina.txt",1,COR::ROSA),25,285));
 	objs.push_back(Personagem_feminina);
@@ -46,8 +25,8 @@ void FaseLevel1::init()
 	objs.push_back(Cadeira);
 
 	
-	//Personagem_sheipado = new Cliente(ObjetoDeJogo("frontDoor",SpriteAnimado("rsc/personagem_masculino.txt",1,COR::MARROM),43,28));
-	//objs.push_back(Personagem_sheipado);
+	Personagem_sheipado = new Cliente(ObjetoDeJogo("frontDoor",SpriteAnimado("rsc/personagem_shape.txt",1,COR::MARROM),43,28));
+	objs.push_back(Personagem_sheipado);
 	
 	Cadeira = new ObjetoDeJogo("frontDoor",Sprite("rsc/cadeira.txt",COR::BRANCA),49,75);
 	objs.push_back(Cadeira);
@@ -87,6 +66,27 @@ void FaseLevel1::init()
 
 	Tapete = new ObjetoDeJogo("frontDoor",Sprite("rsc/tapete.txt",COR::BRANCA),16,319);
 	objs.push_back(Tapete);
+
+	Bonsai= new ObjetoDeJogo("frontDoor",Sprite("rsc/bonsai.txt",COR::VERDE),17,300);
+	objs.push_back(new ObjetoDeJogo("frontDoor",Sprite("rsc/bonsai.txt",COR::VERDE),17,368));
+
+	Estante_bebidas = new ObjetoDeJogo("frontDoor",Sprite("rsc/estante_bebidas.txt",COR::BRANCA),2,10);
+	objs.push_back(Estante_bebidas);
+
+	Estante_doces = new ObjetoDeJogo("frontDoor",Sprite("rsc/estante_doces.txt",COR::BRANCA),2,10+ DISTANCIA_ESTANTES);
+	objs.push_back(Estante_doces);
+
+	Estante_frios = new ObjetoDeJogo("frontDoor",Sprite("rsc/estante_frios.txt",COR::BRANCA),2, 10+(2*DISTANCIA_ESTANTES));
+	objs.push_back(Estante_frios);
+
+	Estante_frutas = new ObjetoDeJogo("frontDoor",Sprite("rsc/estante_frutas.txt",COR::BRANCA),2,10+(3*DISTANCIA_ESTANTES));
+	objs.push_back(Estante_frutas);
+
+	Estante_massas = new ObjetoDeJogo("frontDoor",Sprite("rsc/estante_massas.txt",COR::BRANCA),2,10+(4*DISTANCIA_ESTANTES));
+	objs.push_back(Estante_massas);
+
+	Menu = new ObjetoDeJogo("frontDoor",Sprite("rsc/cardapio.txt",COR::BRANCA),2,10+(5*DISTANCIA_ESTANTES));
+	objs.push_back(Menu);
 }
 
 

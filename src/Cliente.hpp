@@ -114,7 +114,7 @@ private:
 public:
     Cliente(const ObjetoDeJogo &obj)
       : ObjetoDeJogo(obj),
-        balao(new Sprite("rsc/Balao.txt", COR::BRANCA)),
+        balao(new Sprite("rsc/balao.txt", COR::BRANCA)),
         pedido_ativo(false),
         tempo_de_espera(30) // Exemplo: 30 unidades de tempo
     {}
