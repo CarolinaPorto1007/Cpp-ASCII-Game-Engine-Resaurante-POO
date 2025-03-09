@@ -5,7 +5,7 @@
 	#include <string>
 	#include <list>
 
-	
+	#include "Menu.h"
 	#include "Cozinheira.hpp"
 	#include "Cliente.hpp"
 	#include "../ASCII_Engine/ObjetoDeJogo.hpp"
@@ -33,7 +33,7 @@
 	ObjetoDeJogo *Estante_massas;
 	ObjetoDeJogo *Estante_bebidas;
 	ObjetoDeJogo *Estante_frutas;
-	ObjetoDeJogo *Menu;
+	ObjetoDeJogo *Menu1;
 	Cozinheira   *Personagem_feminina;
 	Cliente      *Personagem_sheipado;
 	ObjetoDeJogo *Bonsai;

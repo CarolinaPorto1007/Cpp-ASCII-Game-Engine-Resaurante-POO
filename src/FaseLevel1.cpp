@@ -85,8 +85,22 @@ void FaseLevel1::init()
 	Estante_massas = new ObjetoDeJogo("frontDoor",Sprite("rsc/estante_massas.txt",COR::BRANCA),2,10+(4*DISTANCIA_ESTANTES));
 	objs.push_back(Estante_massas);
 
-	Menu = new ObjetoDeJogo("frontDoor",Sprite("rsc/cardapio.txt",COR::BRANCA),2,10+(5*DISTANCIA_ESTANTES));
-	objs.push_back(Menu);
+	Menu1 = new ObjetoDeJogo("frontDoor",Sprite("rsc/cardapio.txt",COR::BRANCA),2,10+(5*DISTANCIA_ESTANTES));
+	objs.push_back(Menu1);
+
+	std::vector<std::string> bebidas;
+	bebidas.push_back("Suco");
+	bebidas.push_back("Café");
+
+	Menu *menu= new Menu(COR::BRANCA,bebidas,8,0,0);
+	menu->open();
+	
+	objs.push_back(menu);
+
+
+
+
+	
 }
 
 
@@ -107,7 +121,7 @@ unsigned FaseLevel1::run(SpriteBuffer &screen)
 		
 		 //processando entradas
 		
-		if (ent == "w" )
+		if (ent == "w" && !Personagem_feminina->colideComBordas(*Pnaela2))
 			Personagem_feminina->moveUp(6);
 		else if (ent == "s" )
 			Personagem_feminina->moveDown(6);

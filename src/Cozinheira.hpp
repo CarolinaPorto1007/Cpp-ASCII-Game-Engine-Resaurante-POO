@@ -12,7 +12,7 @@ class Cozinheira : public ObjetoDeJogo {
 private:
     std::vector<std::string> bandeja;  
 
-    TextSprite* mensagemEntrega;          
+     TextSprite* mensagemEntrega;          
 
 public:
 
@@ -51,16 +51,11 @@ public:
             }
             // Desenha a mensagem de entrega, se existir, em uma posição ajustada
             if (mensagemEntrega != nullptr) {
-                // Exemplo: desenha a mensagem 10 pixels acima da sprite da cozinheira
-                mensagemEntrega->draw(screen, x, y - 10);
+                mensagemEntrega->draw(screen, x, y - 7);
             }
         }
     }
 
-    ~Cozinheira() {
-        if (mensagemEntrega)
-            delete mensagemEntrega;
-    }
-};
+        };
 
 #endif // COZINHEIRA_HPP
