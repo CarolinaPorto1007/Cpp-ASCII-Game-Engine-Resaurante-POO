@@ -120,90 +120,67 @@ unsigned FaseLevel1::run(SpriteBuffer &screen)
 {
     std::string ent;
    
-    TextSprite *mensagem = nullptr; // Mensagem para exibição no jogo
-
     // Padrão de inicialização
     screen.clear();
     draw(screen);
     system("clear");
     show(screen);
 
+	moddo_selecao= false;
     while (true)
     {
         // Lendo entrada do usuário
         getline(std::cin, ent);
 
-        // Movimentação do personagem
-        if (ent == "w" && !Personagem_feminina->colideComBordas(*Pnaela2))
-            Personagem_feminina->moveUp(6);
-        else if (ent == "s")
-            Personagem_feminina->moveDown(6);
-        else if (ent == "a")
-            Personagem_feminina->moveLeft(6);
-        else if (ent == "d")
-            Personagem_feminina->moveRight(6);
+		if(moddo_selecao==true){
+			if(ent== "w") {estante->moveup();}
+			if(ent=="s") {estante->moveDown();}
+			if(ent== "a"|| ent=="d"){estante->fecharMenu();}
+			if(ent== "f"){estante->fecharMenu();}
+			if(ent== "c"){
+				comida=estante->selecionarItem();
+				Personagem_feminina->pegarComida(comida);
+			}
+		}
 
-        // Cozinheira faz o pedido do cliente
-        if (ent == "e" && Personagem_feminina->colideComBordas(*Personagem_sheipado))
-            Personagem_sheipado->fazerpedido();
+		else{
 
-       
-		else if (ent == "e") {
-			for (Estante* e : est) { // Verifica todas as estantes
-				if (Personagem_feminina->colideComBordas(*e)) {
-					e->abrirMenu();
-					moddo_selecao=true;
-	
-					
-//						std::vector<std::string> itens = e->selecionarItens();
-//						Personagem_feminina->pegarComida(itens);
-//						e->fecharMenu();
+			// Movimentação do personagem
+
+			if (ent == "w" && !Personagem_feminina->colideComBordas(*Balcao))
+				Personagem_feminina->moveUp(6);
+			else if (ent == "s")
+				Personagem_feminina->moveDown(6);
+			else if (ent == "a")
+				Personagem_feminina->moveLeft(6);
+			else if (ent == "d")
+				Personagem_feminina->moveRight(6);
+
+			// Cozinheira faz o pedido do cliente
+			if (ent == "e" && Personagem_feminina->colideComBordas(*Personagem_sheipado))
+				Personagem_sheipado->fazerpedido();
+
+		
+			else if (ent == "e") {
+				for (Estante* e : est) { // Verifica todas as estantes
+					if (Personagem_feminina->colideComBordas(*e)) {
+						e->abrirMenu();
+						moddo_selecao=true;
+
 					}
 				}
 			}
+		}	
 
-        // Cozinheira entrega o pedido para o cliente (se ainda houver tempo)
-        else if (ent == "r" && Personagem_feminina->colideComBordas(*Personagem_sheipado))
-        {
-            if (Personagem_sheipado->getTempoDeEspera() > 0)
-            {
-                Personagem_feminina->entregarPedido(*Personagem_sheipado);
-                delete mensagem;
-                mensagem = new TextSprite("Pedido entregue com sucesso!", COR::VERDE);
-            }
-            else
-            {
-                delete mensagem;
-                mensagem = new TextSprite("Tempo de espera esgotado! Pedido não entregue.", COR::VERMELHA);
-            }
-        }
-
-        // Atualizar tempo de espera do cliente a cada ciclo
-        Personagem_sheipado->atualizarTempo();
-
-        // Se o tempo esgotar, remover o cliente (se necessário)
-        if (Personagem_sheipado->getTempoDeEspera() == 0)
-        {
-            delete mensagem;
-            mensagem = new TextSprite("O cliente ficou impaciente e foi embora!", COR::VERMELHA);
-        }
-
-        // Atualização padrão do jogo
-        update();
+		update();
         screen.clear();
         draw(screen);
 
-        // Desenhar mensagem na tela, se houver
-        if (mensagem)
-            mensagem->draw(screen, 10, 5); // Ajuste a posição conforme necessário
 
-        system("clear");
-        show(screen);
-    }
-
-    // Liberar memória alocada para a mensagem
-    delete mensagem;
-}
+	}        
+       
+}   
+   
 
 
 

@@ -28,8 +28,12 @@
 	private:
 
 	std::vector<Estante*> est;
-	
-	bool moddo_selecao=false;
+
+	bool moddo_selecao;
+
+	Estante* estante;
+
+	std::string comida;
 
     ObjetoDeJogo *Mesa;
 	ObjetoDeJogo *Balcao;

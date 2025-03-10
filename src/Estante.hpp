@@ -36,6 +36,14 @@ public:
         menu->close();
     }
 
+    void moveup(){
+        menu->moveUp();
+    }
+
+    void movedown(){
+        menu->moveDown();
+    }
+
 
     // Permite que o jogador escolha itens manualmente da estante
     std::string selecionarItem() {
