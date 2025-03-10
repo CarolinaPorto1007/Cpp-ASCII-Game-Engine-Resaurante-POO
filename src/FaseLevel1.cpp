@@ -70,32 +70,44 @@ void FaseLevel1::init()
 	Bonsai= new ObjetoDeJogo("frontDoor",Sprite("rsc/bonsai.txt",COR::VERDE),17,300);
 	objs.push_back(new ObjetoDeJogo("frontDoor",Sprite("rsc/bonsai.txt",COR::VERDE),17,368));
 
-	Estante_bebidas = new ObjetoDeJogo("frontDoor",Sprite("rsc/estante_bebidas.txt",COR::BRANCA),2,10);
+	Estante_bebidas = new Estante("Estante de Bebidas", "rsc/estante_bebidas.txt", COR::BRANCA, 2, 10, {"Suco", "Refrigerante", "Agua"});
+	est.push_back(Estante_bebidas);
 	objs.push_back(Estante_bebidas);
 
-	Estante_doces = new ObjetoDeJogo("frontDoor",Sprite("rsc/estante_doces.txt",COR::BRANCA),2,10+ DISTANCIA_ESTANTES);
+	Estante_doces = new Estante("Estante de Doces", "rsc/estante_doces.txt", COR::BRANCA, 2, 10 + DISTANCIA_ESTANTES, 
+		{"Bolo", "Torta_doce", "Biscoito_doce"});
+	est.push_back(Estante_doces);
 	objs.push_back(Estante_doces);
 
-	Estante_frios = new ObjetoDeJogo("frontDoor",Sprite("rsc/estante_frios.txt",COR::BRANCA),2, 10+(2*DISTANCIA_ESTANTES));
-	objs.push_back(Estante_frios);
-
-	Estante_frutas = new ObjetoDeJogo("frontDoor",Sprite("rsc/estante_frutas.txt",COR::BRANCA),2,10+(3*DISTANCIA_ESTANTES));
-	objs.push_back(Estante_frutas);
-
-	Estante_massas = new ObjetoDeJogo("frontDoor",Sprite("rsc/estante_massas.txt",COR::BRANCA),2,10+(4*DISTANCIA_ESTANTES));
-	objs.push_back(Estante_massas);
+	
+	Estante_frios = new Estante("Estante de Frios", "rsc/estante_frios.txt", COR::BRANCA, 2, 10 + (2 * DISTANCIA_ESTANTES),
+		{"Sorvete"});
+		est.push_back(Estante_frios);
+		objs.push_back(Estante_frios);
+	
+	Estante_frutas = new Estante("Estante de Frutas", "rsc/estante_frutas.txt", COR::BRANCA, 2, 10 + (3 * DISTANCIA_ESTANTES),
+		{"Banana", "Maca", "Pera", "Uva"});
+		est.push_back(Estante_frutas);
+		objs.push_back(Estante_frutas);
+	
+	Estante_massas = new Estante("Estante de Massas", "rsc/estante_massas.txt", COR::BRANCA, 2, 10 + (4 * DISTANCIA_ESTANTES),
+		{"Pizza", "Sanduiche", "Torta salgada"});
+		est.push_back(Estante_massas);
+		objs.push_back(Estante_massas);
+	
 
 	Menu1 = new ObjetoDeJogo("frontDoor",Sprite("rsc/cardapio.txt",COR::BRANCA),2,10+(5*DISTANCIA_ESTANTES));
 	objs.push_back(Menu1);
 
-	std::vector<std::string> bebidas;
-	bebidas.push_back("Suco");
-	bebidas.push_back("Café");
-
-	Menu *menu= new Menu(COR::BRANCA,bebidas,8,0,0);
-	menu->open();
 	
-	objs.push_back(menu);
+
+	//std::vector<std::string> bebidas;
+	//bebidas.push_back("Suco");
+	//bebidas.push_back("Cafe");
+
+	//Menu *menu= new Menu(COR::BRANCA,bebidas,11,13,12);
+	//menu->open();
+	//objs.push_back(menu);
 
 
 
@@ -106,92 +118,92 @@ void FaseLevel1::init()
 
 unsigned FaseLevel1::run(SpriteBuffer &screen)
 {
-	std::string ent;
+    std::string ent;
+   
+    TextSprite *mensagem = nullptr; // Mensagem para exibição no jogo
+
+    // Padrão de inicialização
+    screen.clear();
+    draw(screen);
+    system("clear");
+    show(screen);
+
+    while (true)
+    {
+        // Lendo entrada do usuário
+        getline(std::cin, ent);
+
+        // Movimentação do personagem
+        if (ent == "w" && !Personagem_feminina->colideComBordas(*Pnaela2))
+            Personagem_feminina->moveUp(6);
+        else if (ent == "s")
+            Personagem_feminina->moveDown(6);
+        else if (ent == "a")
+            Personagem_feminina->moveLeft(6);
+        else if (ent == "d")
+            Personagem_feminina->moveRight(6);
+
+        // Cozinheira faz o pedido do cliente
+        if (ent == "e" && Personagem_feminina->colideComBordas(*Personagem_sheipado))
+            Personagem_sheipado->fazerpedido();
+
+       
+		else if (ent == "e") {
+			for (Estante* e : est) { // Verifica todas as estantes
+				if (Personagem_feminina->colideComBordas(*e)) {
+					e->abrirMenu();
+					moddo_selecao=true;
 	
-	//padrão
-	screen.clear();
-	draw(screen);
-	system("clear");
-	show(screen);
-	
-	while (true)
-	{
-		//lendo entrada
-		getline(std::cin,ent);
-		
-		 //processando entradas
-		
-		if (ent == "w" && !Personagem_feminina->colideComBordas(*Pnaela2))
-			Personagem_feminina->moveUp(6);
-		else if (ent == "s" )
-			Personagem_feminina->moveDown(6);
-		else if (ent == "a")
-			Personagem_feminina->moveLeft(6);
-		else if (ent == "d")
-     		Personagem_feminina->moveRight(6);
-
-		else if(ent== "e" && Personagem_feminina->colideComBordas(*Personagem_sheipado) )
-			 Personagem_sheipado->fazerpedido();
-
-		
-
-
-		/*else if (ent == "x") {
-			for (int g = 0 ; g < 2 ; g++)
-				if (hero->colideComBordas(*guardas[g])) {
-					guardas[g]->sofrerAtaque(hero->atacar());
-					if (!guardas[g]->isAlive())
-						guardas[g]->desativarObj();
-				}
-		}
-		else if (ent == "q")
-			return Fase::END_GAME;
-			
-
-		if (colideComBloco())
-			hero->moveTo(posL,posC);
-		
-		
-		//processando eventos
-		for (int g = 0 ; g < 2 ; g++)
-				if (hero->colideComBordas(*guardas[g])) {
-					hero->sofrerAtaque(guardas[g]->atacar());
 					
-					if (!hero->isAlive())
-						return Fase::GAME_OVER;
-					
-					life->setText(std::string(hero->getLife()/5,'#'));
+//						std::vector<std::string> itens = e->selecionarItens();
+//						Personagem_feminina->pegarComida(itens);
+//						e->fecharMenu();
+					}
 				}
-		
-		if (hero->colideComBordas(*chave))
-		{
-			chave->desativarObj();
-			miniChave->ativarObj();
-			hero->pegarChave();
-		}
-		else if (hero->colideComBordas(*tapetePorta) && hero->possuiChave())
-		{
-			porta->openTheDoor();
-		}
-		else if (hero->colideComBordas(*princesa))
-		{
-			princesa->desativarObj();
-			hero->salvarPrincesa();
-		}
-		else if (hero->colideComBordas(*portao) && hero->salvouPrincesa())
-		{
-			return Fase::LEVEL_COMPLETE;
-		}
-		*/
-		
-		//padrão
-		update();
-		screen.clear();
-		draw(screen);
-		system("clear");
-		show(screen);
-	}
-	
-	return Fase::END_GAME; // não necessário
+			}
+
+        // Cozinheira entrega o pedido para o cliente (se ainda houver tempo)
+        else if (ent == "r" && Personagem_feminina->colideComBordas(*Personagem_sheipado))
+        {
+            if (Personagem_sheipado->getTempoDeEspera() > 0)
+            {
+                Personagem_feminina->entregarPedido(*Personagem_sheipado);
+                delete mensagem;
+                mensagem = new TextSprite("Pedido entregue com sucesso!", COR::VERDE);
+            }
+            else
+            {
+                delete mensagem;
+                mensagem = new TextSprite("Tempo de espera esgotado! Pedido não entregue.", COR::VERMELHA);
+            }
+        }
+
+        // Atualizar tempo de espera do cliente a cada ciclo
+        Personagem_sheipado->atualizarTempo();
+
+        // Se o tempo esgotar, remover o cliente (se necessário)
+        if (Personagem_sheipado->getTempoDeEspera() == 0)
+        {
+            delete mensagem;
+            mensagem = new TextSprite("O cliente ficou impaciente e foi embora!", COR::VERMELHA);
+        }
+
+        // Atualização padrão do jogo
+        update();
+        screen.clear();
+        draw(screen);
+
+        // Desenhar mensagem na tela, se houver
+        if (mensagem)
+            mensagem->draw(screen, 10, 5); // Ajuste a posição conforme necessário
+
+        system("clear");
+        show(screen);
+    }
+
+    // Liberar memória alocada para a mensagem
+    delete mensagem;
 }
+
+
 

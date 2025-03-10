@@ -19,7 +19,8 @@ public:
     Cozinheira(const ObjetoDeJogo &obj) : ObjetoDeJogo(obj){}
 
     // Adiciona um item à bandeja
-    void pegarComida(const std::string &comida) {
+    // Na classe Cozinheira (Cozinheira.hpp)
+    void pegarComida(std::string &comida) {
         bandeja.push_back(comida);
     }
 

@@ -5,10 +5,11 @@
 	#include <string>
 	#include <list>
 
-	#include "Menu.h"
+	#include "Menu.hpp"
 	#include "Cozinheira.hpp"
 	#include "Cliente.hpp"
 	#include "../ASCII_Engine/ObjetoDeJogo.hpp"
+	#include "Estante.hpp"
 
 
 	class FaseLevel1 : public Fase
@@ -26,13 +27,17 @@
 
 	private:
 
+	std::vector<Estante*> est;
+	
+	bool moddo_selecao=false;
+
     ObjetoDeJogo *Mesa;
 	ObjetoDeJogo *Balcao;
-	ObjetoDeJogo *Estante_frios;
-	ObjetoDeJogo *Estante_doces;
-	ObjetoDeJogo *Estante_massas;
-	ObjetoDeJogo *Estante_bebidas;
-	ObjetoDeJogo *Estante_frutas;
+	Estante *Estante_frios;
+	Estante *Estante_doces;
+	Estante *Estante_massas;
+	Estante *Estante_bebidas;
+	Estante *Estante_frutas;
 	ObjetoDeJogo *Menu1;
 	Cozinheira   *Personagem_feminina;
 	Cliente      *Personagem_sheipado;

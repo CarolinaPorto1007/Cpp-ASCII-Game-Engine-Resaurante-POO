@@ -24,7 +24,7 @@ public:
         : ObjetoDeJogo(obj),
           balao(new Sprite("rsc/balao.txt", COR::BRANCA)),
           pedido_ativo(false),
-          tempo_de_espera(30),
+          tempo_de_espera(100),
           resultadoMensagem(nullptr)
     {}
 

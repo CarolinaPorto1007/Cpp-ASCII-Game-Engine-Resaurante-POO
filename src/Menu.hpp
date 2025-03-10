@@ -25,8 +25,9 @@ public:
             TextSprite(linha, corMenu).draw(*pSprite, 0, 0);
             TextSprite(linha, corMenu).draw(*pSprite, MAX + 1, 0);
 
-            for (int i = 0; i < opcoes.size(); i ++)
+            for (int i = 0; i < opcoes.size(); i++)
                 TextSprite(opcoes[i], corMenu).draw(*pSprite, 1 + i, 4);
+;
             
             close();
         }
