@@ -70,7 +70,7 @@ void FaseLevel1::init()
 	Bonsai= new ObjetoDeJogo("frontDoor",Sprite("rsc/bonsai.txt",COR::VERDE),17,300);
 	objs.push_back(new ObjetoDeJogo("frontDoor",Sprite("rsc/bonsai.txt",COR::VERDE),17,368));
 
-	Estante_bebidas = new Estante("Estante de Bebidas", "rsc/estante_bebidas.txt", COR::BRANCA, 2, 10, {"Suco", "Refrigerante", "Agua"});
+	Estante_bebidas = new Estante("Estante de Bebidas", "rsc/estante_bebidas.txt", COR::BRANCA, 2, 10, {"Suco", "Coffe"});
 	est.push_back(Estante_bebidas);
 	objs.push_back(Estante_bebidas);
 
@@ -132,21 +132,24 @@ unsigned FaseLevel1::run(SpriteBuffer &screen)
         // Lendo entrada do usuário
         getline(std::cin, ent);
 
-		if(moddo_selecao==true){
+		if(moddo_selecao){
 			if(ent== "w") {estante->moveup();}
-			if(ent=="s") {estante->moveDown();}
-			if(ent== "a"|| ent=="d"){estante->fecharMenu();}
-			if(ent== "f"){estante->fecharMenu();}
+			if(ent=="s") {estante->movedown();}
+			//if(ent== "a"|| ent=="d"){estante->fecharMenu();}
+			if(ent== "f"){
+				estante->fecharMenu();
+				moddo_selecao=false;
+			}
 			if(ent== "c"){
 				comida=estante->selecionarItem();
 				Personagem_feminina->pegarComida(comida);
+				moddo_selecao=false;
+				estante->fecharMenu();
 			}
 		}
+	// Movimentação do personagem
 
 		else{
-
-			// Movimentação do personagem
-
 			if (ent == "w" && !Personagem_feminina->colideComBordas(*Balcao))
 				Personagem_feminina->moveUp(6);
 			else if (ent == "s")
@@ -166,20 +169,38 @@ unsigned FaseLevel1::run(SpriteBuffer &screen)
 					if (Personagem_feminina->colideComBordas(*e)) {
 						e->abrirMenu();
 						moddo_selecao=true;
+						estante= e;
 
 					}
 				}
 			}
-		}	
+			if (ent == "o" && Personagem_feminina->colideComBordas(*Personagem_sheipado)){
+				Personagem_feminina->entregarPedido(*Personagem_sheipado);
+				
+				break;
+				//Personagem_sheipado->conferirPedido();
+			}
 
+				
+		}
 		update();
-        screen.clear();
-        draw(screen);
+		screen.clear();
+		draw(screen);
+		system("clear");
+		show(screen);			
+		
+	}	
+update();
+screen.clear();
+draw(screen);
+system("clear");
+show(screen);	
+system("sleep 3");
+return Fase::END_GAME;
 
-
-	}        
+}        
        
-}   
+
    
 
 

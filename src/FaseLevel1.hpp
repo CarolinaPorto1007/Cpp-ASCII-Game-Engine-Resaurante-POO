@@ -33,6 +33,8 @@
 
 	Estante* estante;
 
+	
+
 	std::string comida;
 
     ObjetoDeJogo *Mesa;

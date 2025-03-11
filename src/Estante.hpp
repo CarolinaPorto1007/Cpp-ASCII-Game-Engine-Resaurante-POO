@@ -7,6 +7,7 @@
 #include "Menu.hpp"
 
 class Estante : public ObjetoDeJogo {
+    
 private:
     std::vector<std::string> itens; // Itens disponíveis na estante
     Menu* menu;                     // Menu de seleção de itens
