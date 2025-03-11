@@ -10,6 +10,7 @@
 	#include "Cliente.hpp"
 	#include "../ASCII_Engine/ObjetoDeJogo.hpp"
 	#include "Estante.hpp"
+	#include "../ASCII_Engine/Sound.hpp"
 
 
 	class FaseLevel1 : public Fase

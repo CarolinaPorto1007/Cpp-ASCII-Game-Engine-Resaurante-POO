@@ -66,7 +66,7 @@ public:
             pSprite->draw(screen, x, y);
             if (menu->isOpen()) {
                 int y_menu = getPosC() +2;
-                int x_menu = getPosL() +6;
+                int x_menu = getPosL() +10;
                 menu->draw(screen, x_menu, y_menu);
 
             }

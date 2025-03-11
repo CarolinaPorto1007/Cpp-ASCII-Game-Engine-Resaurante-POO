@@ -70,7 +70,7 @@ void FaseLevel1::init()
 	Bonsai= new ObjetoDeJogo("frontDoor",Sprite("rsc/bonsai.txt",COR::VERDE),17,300);
 	objs.push_back(new ObjetoDeJogo("frontDoor",Sprite("rsc/bonsai.txt",COR::VERDE),17,368));
 
-	Estante_bebidas = new Estante("Estante de Bebidas", "rsc/estante_bebidas.txt", COR::BRANCA, 2, 10, {"Suco", "Coffe"});
+	Estante_bebidas = new Estante("Estante de Bebidas", "rsc/estante_bebidas.txt", COR::BRANCA, 2, 10, {"Suco", "Cafe"});
 	est.push_back(Estante_bebidas);
 	objs.push_back(Estante_bebidas);
 
@@ -127,6 +127,10 @@ unsigned FaseLevel1::run(SpriteBuffer &screen)
     show(screen);
 
 	moddo_selecao= false;
+	Sound backMusic("rsc/sound/game-music-loop-19-153393.mp3");
+	backMusic.playloop();
+
+
     while (true)
     {
         // Lendo entrada do usuário
@@ -196,7 +200,8 @@ draw(screen);
 system("clear");
 show(screen);	
 system("sleep 3");
-return Fase::END_GAME;
+backMusic.stop();
+return Fase::MENU;
 
 }        
        

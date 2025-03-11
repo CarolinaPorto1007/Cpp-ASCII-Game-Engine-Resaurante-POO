@@ -1,0 +1,13 @@
+
+                               INSTRUCOES DO JOGO
+_______________________________________________________________________________
+| 1- Atender o cliente e apertar a tecla "e" para fazer o pedido;             |
+| 2- Para preparar o pedido va ate as estantes e procure os itens do pedido;  |
+| 3- Os itens devem ser escolhidos na mesma sequencia do pedido do cliente;   |
+| 4- Depois de selecionar os itens no menu das estantes entregue o pedido;    |
+| 5- Teclas importantes:"e" para fazer o pedido ou selecionar as estantes,    |
+| "f" para fechar o menu, "o" para entregar o pedido, "a" para esquerda,      |
+| "d" para direita, "w" para cima,"s" para baixo e "c" para selecionar o menu.|
+|                                                                             |
+|                                 BOM JOGO!!!                                 |
+|_____________________________________________________________________________|
