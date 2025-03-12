@@ -104,7 +104,7 @@ public:
             }
             if (resultadoMensagem != nullptr) {
                 // Exibe a mensagem de resultado; ajuste as coordenadas conforme necessário
-                resultadoMensagem->draw(screen, x + 10, y + 30);
+                resultadoMensagem->draw(screen, x - 4, y -15);
             }
         }
     }

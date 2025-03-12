@@ -52,7 +52,7 @@ public:
             }
             // Desenha a mensagem de entrega, se existir, em uma posição ajustada
             if (mensagemEntrega != nullptr) {
-                mensagemEntrega->draw(screen, x, y - 7);
+                mensagemEntrega->draw(screen, x-5, y-3 );
             }
         }
     }

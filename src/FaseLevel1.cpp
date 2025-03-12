@@ -25,7 +25,7 @@ void FaseLevel1::init()
 	objs.push_back(Cadeira);
 
 	
-	Personagem_sheipado = new Cliente(ObjetoDeJogo("frontDoor",SpriteAnimado("rsc/personagem_shape.txt",1,COR::MARROM),43,28));
+	Personagem_sheipado = new Cliente(ObjetoDeJogo("frontDoor",SpriteAnimado("rsc/personagem_shape.txt",1,COR::MARROM),44,28));
 	objs.push_back(Personagem_sheipado);
 	
 	Cadeira = new ObjetoDeJogo("frontDoor",Sprite("rsc/cadeira.txt",COR::BRANCA),49,75);
